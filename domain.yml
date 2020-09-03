@@ -1,0 +1,58 @@
+session_config:
+  session_expiration_time: 0
+  carry_over_slots_to_new_session: true
+intents:
+- status
+- arrange_appointment
+- callback
+- leaving_message
+- name
+- enquiry
+entities:
+- user_message
+- PERSON
+- keyword
+slots:
+  PERSON:
+    type: text
+  calling_person:
+    type: text
+  keyword:
+    type: text
+  user_message:
+    type: text
+  user_name:
+    type: text
+responses:
+  utter_enquiry:
+  - text: I understand you’re inquiring about {keyword}. I will get RIchard to call
+      you back as soon as possible?
+  utter_status:
+  - text: I understand you're looking for {calling_person} but he is unavailable.
+      Can I get him to call you back as soon as possible?
+  utter_arrange_appointment:
+  - text: I understand calling about an appointment. {calling_person} would be the
+      best person to set this up, Can he call you back as soon as possible?
+  utter_slots_values:
+  - text: "i am going to :\n - user_message: {user_message}\n user_name: {user_name}"
+  utter_ask_user_name:
+  - text: What is your name
+  utter_ask_user_message:
+  - text: What message you want to send
+  utter_leaving_message:
+  - text: I will notify {calling_person} about your message and he will call you back
+      as soon as possible. Is this okay?
+  utter_callback:
+  - text: I understand your request. I will get {calling_person} to call you back
+      as soon as possible?
+actions:
+- utter_status
+- utter_arrange_appointment
+- utter_slots_values
+- utter_leaving_message
+- utter_callback
+- utter_enquiry
+- action_reset_all_slots
+- LookUser
+forms:
+- InformUser
